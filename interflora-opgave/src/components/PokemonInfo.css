@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pokemon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25em;
+  width: 50%;
+  border: 1px solid #f8f8f8;
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  font-size: 1.2em;
+}
+
+.pokemon-card img {
+  display: flex;
+  min-height: 10rem;
+  margin-right: 1.5rem;
+}
+.pokemon-info {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  line-height: 1.6;
+  align-items: center;
+}
+.pokemon-card button {
+  padding: 1rem;
+  font-size: 2rem;
+}
