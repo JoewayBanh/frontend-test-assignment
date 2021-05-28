@@ -13,7 +13,7 @@ const PokemonInfo = () => {
       .then((res) => setPokemon(res.data));
   }, []);
 
-  const asd = () => {
+  const randomizer = () => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${randomNum}`)
       .then((res) => setPokemon(res.data));
@@ -34,7 +34,7 @@ const PokemonInfo = () => {
           <img src={pokemon.sprites.back_default} alt="front" />
           <img src={pokemon.sprites.front_default} alt="back" />
         </div>
-        <button onClick={asd}>Click for random pokemon!</button>
+        <button onClick={randomizer}>Click for random pokemon!</button>
       </div>
     </>
   );
