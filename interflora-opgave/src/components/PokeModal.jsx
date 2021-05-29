@@ -2,12 +2,16 @@ import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./PokeModal.css";
 
-const PokeModal = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [counter, setCounter] = useState(5);
+const PokeModal = ({ pokemon, setPokemon }) => {
+  const [counter, setCounter] = useState(25);
+  let [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
-    counter > 0 && setTimeout(() => setCounter(counter - 1), 300);
+    if (counter > 0) {
+      setTimeout(() => setCounter(counter - 1), 1000);
+    } else {
+      setModalIsOpen(true);
+    }
   }, [counter]);
 
   return (
@@ -15,6 +19,7 @@ const PokeModal = () => {
       <button className="poke-modal-btn" onClick={() => setModalIsOpen(true)}>
         Click for modal
       </button>
+
       <p className="poke-modal-btn">Modal will auto-open in: {counter} secs</p>
       <Modal
         isOpen={modalIsOpen}
@@ -22,15 +27,28 @@ const PokeModal = () => {
         style={{
           overlay: { backgroundColor: "grey" },
           content: {
-            color: "red",
             width: "40vw",
             position: "absolute",
             left: "30vw",
+            textAlign: "center",
           },
         }}
       >
-        <h2>Hiii</h2>
-        <p>ælkækl</p>
+        <h2>{pokemon.name}</h2>
+        <br />
+        <p>Shiny versions of the pokemon:</p>
+        <div>
+          <img
+            style={{ minHeight: "10rem" }}
+            src={pokemon.sprites.back_shiny}
+            alt="back"
+          />
+          <img
+            style={{ minHeight: "10rem" }}
+            src={pokemon.sprites.front_shiny}
+            alt="front"
+          />
+        </div>
         <button onClick={() => setModalIsOpen(false)}>Close modal</button>
       </Modal>
     </div>
