@@ -2,25 +2,35 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./PokemonInfo.css";
 const PokemonInfo = ({ pokemon, setPokemon }) => {
-  let randomNum = Math.floor(Math.random() * 152);
+  const randomNum = Math.floor(Math.random() * 152);
+  const [loaded, setLoaded] = useState(false);
 
-  useEffect(async () => {
+  useEffect(() => {
+    async function fetchData() {
+      await axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${randomNum}`)
+        .then((res) => setPokemon(res.data))
+        .then(setLoaded(true));
+    }
+
+    fetchData();
+  }, [setPokemon]);
+
+  const randomizer = async () => {
     await axios
       .get(`https://pokeapi.co/api/v2/pokemon/${randomNum}`)
       .then((res) => setPokemon(res.data));
-  }, []);
-
-  const randomizer = () => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${randomNum}`)
-      .then((res) => setPokemon(res.data));
   };
-
+  const toCheck = () =>
+    loaded ? console.log("it's here") : console.log("not yet");
+  toCheck();
   return (
     <>
       <div className="pokemon-card">
         <h1 className="pokemon-name">
-          {/* {pokemon.name.charAt(0).toUpperCase() + pokemon.name.substring(1)} */}
+          {!loaded
+            ? "sss"
+            : pokemon.name.charAt(0).toUpperCase() + pokemon.name.substring(1)}
           {pokemon.name}
         </h1>
         <div className="pokemon-info">
@@ -34,6 +44,7 @@ const PokemonInfo = ({ pokemon, setPokemon }) => {
           <img src={pokemon.sprites.front_default} alt="front" />
         </div>
         <button onClick={randomizer}>Click for random pokemon!</button>
+        <button onClick={toCheck}>Click to check!</button>
       </div>
     </>
   );
