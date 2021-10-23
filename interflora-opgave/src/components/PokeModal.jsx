@@ -40,12 +40,12 @@ const PokeModal = ({ pokemon, setPokemon }) => {
         <div>
           <img
             style={{ minHeight: "10rem" }}
-            src={pokemon.sprites.back_shiny}
+            // src={pokemon.sprites.back_shiny}
             alt="back"
           />
           <img
             style={{ minHeight: "10rem" }}
-            src={pokemon.sprites.front_shiny}
+            // src={pokemon.sprites.front_shiny}
             alt="front"
           />
         </div>
