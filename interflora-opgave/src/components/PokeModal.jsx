@@ -15,43 +15,52 @@ const PokeModal = ({ pokemon, setPokemon }) => {
   }, [counter]);
 
   return (
-    <div className="poke-modal-container">
-      <button className="poke-modal-btn" onClick={() => setModalIsOpen(true)}>
-        Click for modal
-      </button>
+    <>
+      {pokemon && (
+        <div className="poke-modal-container">
+          <button
+            className="poke-modal-btn"
+            onClick={() => setModalIsOpen(true)}
+          >
+            Click for modal
+          </button>
 
-      <p className="poke-modal-btn">Modal will auto-open in: {counter} secs</p>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        style={{
-          overlay: { backgroundColor: "grey" },
-          content: {
-            width: "40vw",
-            position: "absolute",
-            left: "30vw",
-            textAlign: "center",
-          },
-        }}
-      >
-        <h2>{pokemon.name}</h2>
-        <br />
-        <p>Shiny versions of the pokemon:</p>
-        <div>
-          <img
-            style={{ minHeight: "10rem" }}
-            src={pokemon.sprites.back_shiny}
-            alt="back"
-          />
-          <img
-            style={{ minHeight: "10rem" }}
-            src={pokemon.sprites.front_shiny}
-            alt="front"
-          />
+          <p className="poke-modal-btn">
+            Modal will auto-open in: {counter} secs
+          </p>
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={() => setModalIsOpen(false)}
+            style={{
+              overlay: { backgroundColor: "grey" },
+              content: {
+                width: "40vw",
+                position: "absolute",
+                left: "30vw",
+                textAlign: "center",
+              },
+            }}
+          >
+            <h2>{pokemon.name}</h2>
+            <br />
+            <p>Shiny versions of the pokemon:</p>
+            <div>
+              <img
+                style={{ minHeight: "10rem" }}
+                src={pokemon.sprites.back_shiny}
+                alt="back"
+              />
+              <img
+                style={{ minHeight: "10rem" }}
+                src={pokemon.sprites.front_shiny}
+                alt="front"
+              />
+            </div>
+            <button onClick={() => setModalIsOpen(false)}>Close modal</button>
+          </Modal>
         </div>
-        <button onClick={() => setModalIsOpen(false)}>Close modal</button>
-      </Modal>
-    </div>
+      )}
+    </>
   );
 };
 export default PokeModal;

@@ -3,9 +3,7 @@ import PokemonInfo from "./components/PokemonInfo";
 import PokeModal from "./components/PokeModal";
 
 function App() {
-  const [pokemon, setPokemon] = useState({
-    sprites: {},
-  });
+  const [pokemon, setPokemon] = useState(null);
 
   return (
     <>
